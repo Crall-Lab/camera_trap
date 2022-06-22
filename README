@@ -1,0 +1,18 @@
+install raspberry pi os (latest)
+sudo apt update && sudo apt upgrade
+install virtualenvwrapper
+echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
+. ~/.bashrc
+mkvirtualenv --python=`which python3` --system-site-packages bugcam
+echo "source /home/pi/.virtualenvs/bugcam/bin/activate" >> ~/.bashrc
+. ~/.bashrc
+pip install --upgrade pip
+
+sudo raspi-config nonint do_i2c 0
+sudo raspi-config nonint do_camera 0
+
+sudo apt install -y i2c-tools libgpiod-dev
+pip install --upgrade RPi.GPIO
+pip install --upgrade adafruit-blinka
+
+pip install adafruit-circuitpython-aw9523
