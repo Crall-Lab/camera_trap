@@ -10,7 +10,7 @@ import picamera2
 
 images_dir = os.path.expanduser('~/images')
 
-IR_LED_PIN = 8
+IR_LED_PIN = 11
 
 # seconds to wait after turning on LEDs and before taking a picture
 pre_capture_delay = 60 * 5
@@ -78,9 +78,9 @@ if __name__ == '__main__':
     aw = adafruit_aw9523.AW9523(i2c)
 
     leds = {
-        'green': LEDBank(aw, [0, 1]),
-        'blue': LEDBank(aw, [2, 3]),
-        'uv': LEDBank(aw, [4, 5, 6, 7], 30),
+        'green': LEDBank(aw, [14, ]),
+        'blue': LEDBank(aw, [1, ]),
+        'uv': LEDBank(aw, [4, 7], 30),
     }
 
     ir_led = aw.get_pin(IR_LED_PIN)
