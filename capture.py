@@ -60,8 +60,8 @@ def capture(color, ir_led):
     # take picture
     with picamera2.Picamera2() as cam:
         cam.start_preview(picamera2.Preview.NULL)
-        preview_config = cam.preview_configuration()
-        still_config = cam.still_configuration()
+        preview_config = cam.create_preview_configuration()
+        still_config = cam.create_still_configuration()
         cam.configure(preview_config)
         cam.start()
         # TODO is it necessary to delay to allow the camera settings to settle?

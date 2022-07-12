@@ -8,7 +8,7 @@ import picamera2
 cam = picamera2.Picamera2()
 cam.start_preview(picamera2.Preview.NULL)
 
-preview_config = cam.preview_configuration()
+preview_config = cam.create_preview_configuration()
 cam.configure(preview_config)
 
 cam.start()
