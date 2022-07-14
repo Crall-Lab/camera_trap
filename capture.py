@@ -94,12 +94,21 @@ if __name__ == '__main__':
     print(f"Saving images to {images_dir}")
 
     while True:
-        color = cycle[cycle_index % len(cycle)]
-        print(f"Cycle {cycle_index} {color}")
-        leds[color].turn_on()
-        time.sleep(pre_capture_delay)
-        capture(color, ir_led)
-        leds[color].turn_off()
-        # TODO instead of setting post_capture, use a fixed period
-        time.sleep(post_capture_delay)
-        cycle_index += 1
+        try:
+            color = cycle[cycle_index % len(cycle)]
+            print(f"Cycle {cycle_index} {color}")
+            leds[color].turn_on()
+            time.sleep(pre_capture_delay)
+            try:
+                capture(color, ir_led)
+            except Exception as e:
+                print("Capture error: %s" % e)
+                pass
+            leds[color].turn_off()
+            # TODO instead of setting post_capture, use a fixed period
+            time.sleep(post_capture_delay)
+            cycle_index += 1
+        except Exception as e:
+            print("Cycle error: %s" % e)
+            for color in leds:
+                leds[color].turn_off()
