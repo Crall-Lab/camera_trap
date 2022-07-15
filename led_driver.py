@@ -1,4 +1,5 @@
 import argparse
+import time
 
 import adafruit_aw9523
 import board
@@ -80,14 +81,11 @@ def create_leds():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Turn off all leds, options can be used to turn on specific leds")
-    parser.add_argument(
-        '-i', '--ir', default=None, type=bool,
-        help='set state of ir led to on[1]/off[0]')
-    for color in color_pins:
+    for color in list(color_pins.keys()) + ['ir', ]:
         parser.add_argument(
             '-%s' % color[0],
             '--%s' % color,
-            default=None, type=bool,
+            default=False, action='store_true',
             help='set state of %s led to on[1]/off[0]' % color)
 
     args = parser.parse_args()
@@ -95,9 +93,5 @@ if __name__ == '__main__':
     leds = create_leds()
 
     for color in leds:
-        state = getattr(args, color)
-        if state is not None:
-            if state:
-                leds[color].turn_on()
-            else:
-                leds[color].turn_off()
+        if getattr(args, color):
+            leds[color].turn_on()
