@@ -28,3 +28,9 @@ pip3 install picamera2
 run focus.py to focus camera
 
 run capture.py to start image acquisition
+
+To run code automatically on reboot, add the following to the users crontab
+
+@reboot bash $HOME/r/Crall-Lab/camera_trap/run_capture.sh
+
+Note the above line assumes the code is at ~/r/Crall-Lab/camera_trap
