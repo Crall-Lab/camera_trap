@@ -12,15 +12,18 @@ import digitalio
 # led pins and currents are defined in a separate file
 import led_driver
 
+logging.basicConfig(
+    level=logging.INFO,
+    filename='capture.log')
 
 images_dir = os.path.expanduser('~/images')
 
 # seconds to wait after turning on LEDs and before taking a picture
 pre_capture_delay = 60 * 5
-pre_capture_delay = 1
+#pre_capture_delay = 1
 # seconds to wait after taking picture
 post_capture_delay = 60 * 5
-post_capture_delay = 1
+#post_capture_delay = 1
 # seconds to wait after starting camera to allow it to 'settle'
 camera_capture_delay = 1.0
 # if capture takes more than capture_timeout seconds, error out
