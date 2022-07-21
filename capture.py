@@ -76,12 +76,14 @@ if __name__ == '__main__':
             logging.info(f"Cycle {cycle_index} {color}")
             leds[color].turn_on()
             time.sleep(pre_capture_delay)
+            leds[color].turn_off() #Turn off attraction LEDs before capture
+            time.sleep(0.5)
             try:
                 capture(color, leds['ir'])
             except Exception as e:
                 logging.error("Capture error: %s" % e)
                 pass
-            leds[color].turn_off()
+            #leds[color].turn_off()
             # TODO instead of setting post_capture, use a fixed period
             time.sleep(post_capture_delay)
             cycle_index += 1
