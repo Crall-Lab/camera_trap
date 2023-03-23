@@ -1,4 +1,5 @@
 install raspberry pi os (latest bullseye is required)
+
 ```bash
 sudo apt update && sudo apt upgrade
 ```
