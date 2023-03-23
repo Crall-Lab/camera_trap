@@ -1,8 +1,15 @@
 install raspberry pi os (latest bullseye is required)
 
 ```bash
+
+```
+
+
+# Set up
+```bash
 sudo apt update && sudo apt upgrade
 ```
+
 # install virtualenvwrapper
 sudo apt install virtualenvwrapper
 echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
